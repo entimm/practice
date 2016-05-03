@@ -1,0 +1,41 @@
+<layout name="layout" />
+
+<notpresent name="othertype">
+<div class="center-center">
+	<h1>
+		你还没有写这篇<a
+			href="<{:U('Manual/otherAdd',array('typeid'=>$_GET['typeid']))}>"><{$ntype.type}></a>哦。
+	</h1>
+</div>
+<else />
+<div id="article_info">
+    <table>
+        <caption><h2><{$ntype.type}></h2></caption>
+        <tr>
+            <th>浏览次数</th>
+            <th>完成时间</th>
+            <th>修改时间</th>
+            <th>修改</th>
+        </tr>
+        <tr>
+            <td><{$othertype.browse_times}></td>
+            <td><{$othertype.add_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+            <td><{$othertype.mod_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+            <td><button class="btn btn-primary" onclick="location='<{:U('Manual/otherMod',array('typeid'=>$_GET['typeid']))}>'">
+                修改</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="content">
+	<{$othertype.cont|htmlspecialchars_decode}>
+</div>
+</notpresent>
+
+<script src="/UEditor/ueditor.parse.min.js"></script>
+<script>setTimeout(function(){uParse('div',{
+    'highlightJsUrl':'/UEditor/third-party/SyntaxHighlighter/shCore.js',
+    'highlightCssUrl':'/UEditor/third-party/SyntaxHighlighter/shCoreDefault.css'})},300)
+</script>
+
+

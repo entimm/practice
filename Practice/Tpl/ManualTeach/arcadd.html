@@ -1,0 +1,17 @@
+<layout name="layout" />
+
+<div class="container">
+	<form method="post" action="<{:U('ManualTeach/arcadd',array('typeid'=>$_GET['typeid']))}>">
+		<h3><{$title}></h3>
+		<script type="text/plain" name="content" id="content" style="height:500px"></script>
+		<div style="margin:10px auto" class="text-center">
+		<input type="submit" value="提   交"/>
+		</div>
+
+	</form>
+
+</div>
+
+<script type="text/javascript">
+UE.getEditor('content');
+</script>

@@ -1,0 +1,61 @@
+<layout name="layout" />
+<div id="slide">
+    <div class="content" style="">
+        <h2>实习风采</h2>
+        <h4>海南师范大学信息科学技术学院</h4>
+    </div>
+    <img src="__IMAGES__/Orbit/1.jpg" />
+    <img src="__IMAGES__/Orbit/2.jpg" />
+    <img src="__IMAGES__/Orbit/3.jpg" />
+</div>
+
+<form id="loginform" method="post" action="<{:U('Login/index')}>">
+    <ul>
+        <li>
+            <h1>用户登录</h1>
+        </li>
+        <li>
+            <label for="account">账号：</label>
+            <input type="text" name="account" id="account" required />
+        </li>
+        <li>
+            <label for="user_password">密码：</label>
+            <input type="password" name="user_password" id="user_password" required />
+        </li>
+        <li>
+            职位：
+            <ul>
+                <li>
+                    <input type="radio" checked="checked" id="student" value="student" name="level" />
+                    <label for="student">学生</label>
+                </li>
+                <li>
+                    <input type="radio" id="teacher" value="teacher" name="level" />
+                    <label for="teacher">老师</label>
+                </li>
+                <li>
+                    <input type="radio" id="department" value="department" name="level" />
+                    <label for="department">管理员</label>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <input type="submit" value="登录">
+            <input type="reset" value="重置">
+        </li>
+        <li><a href="<{:U('FindPassword/index')}>"><span class="forgot">忘记密码？</span></a>
+        </li>
+
+    </ul>
+</form>
+
+<load href="__ORBIT__/jquery.orbit-1.2.3.min.js" />
+<script type="text/javascript">
+$(window).load(function() {
+    $('#slide').orbit({
+        'bullets': true,
+        'bulletThumbs': true,
+        'bulletThumbLocation': 'orbit/'
+    });
+});
+</script>

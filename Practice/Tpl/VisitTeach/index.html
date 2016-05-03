@@ -1,0 +1,37 @@
+<layout name="layout" />
+<ul id="userlist">
+    <volist name="teachs" id="vo">
+        <li><a href="<{:U('VisitTeach/index',array('space'=>$vo['id']))}>"><{$vo.id}> - <{$vo.name}></a></li>
+    </volist>
+</ul>
+
+<div class="sortlist">
+<ul>
+	<volist name="sorts" id="vo">
+		<li><a href="<{:U('VisitTeach/lists',array('sort'=>$vo['id'],'space'=>$_GET['space']))}>"><h5><{$vo.type}></h5></a></li>
+	</volist>
+</ul>
+</div>
+
+<present name="condition">
+    <div id="condition">
+        当前筛选条件(点击去除)：<a href="__ACTION__"><{$condition.name}></a>
+        <a href="/VisitTeach/index">全部</a>
+    </div>
+</present>
+
+<volist name="arcs" id="vo">
+<div class="article list">
+<a href="<{:U('VisitTeach/lists',array('sort'=>$vo['tpid'],'space'=>$_GET['space']))}>"><h2><{$vo.type}></h2></a>
+<ul>
+    <volist name="vo.arcs" id="v">
+        <li>
+            <span class="browse_times">浏览次数：<{$v.browse_times}></span>
+            <a href="<{:U('VisitTeach/details',array('id'=>$v['id']))}>">
+            <{$v.name}>——<{$v.add_time|strtotime|date="Y年m月d日H时i分" ,###}></a>
+        </li>
+    </volist>
+        <li><a href="<{:U('VisitTeach/lists',array('sort'=>'vr','space'=>$_GET['space']))}>">更多...</a></li>
+</ul>
+</div>
+</volist>

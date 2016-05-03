@@ -1,0 +1,45 @@
+<layout name="layout" />
+
+<ul id="userlist">
+    <volist name="stus" id="vo">
+    <li><a href="<{:U('Visit/lists',array('sort'=>$sort,'space'=>$vo['id']))}>"><{$vo.id}> - <{$vo.name}></a></li>
+    </volist>
+</ul>
+
+<div class="sortlist">
+<ul>
+    <li style="margin-left:0"><a href="<{:U('Visit/lists',array('sort'=>'vr','space'=>$_GET['space']))}>"><h5>听评课记录</h5></a></li>
+    <li><a href="<{:U('Visit/lists',array('sort'=>'tp','space'=>$_GET['space']))}>"><h5>教学实习教案</h5></a></li>
+    <li><a href="<{:U('Visit/lists',array('sort'=>'ww','space'=>$_GET['space']))}>"><h5>教学工作日记</h5></a></li>
+    <li><a href="<{:U('Visit/lists',array('sort'=>'tw','space'=>$_GET['space']))}>"><h5>班主任工作周记</h5></a></li>
+    <li><a href="<{:U('Visit/lists',array('sort'=>'t','space'=>$_GET['space']))}>"><h5>岗前培训</h5></a></li>
+    <li><a href="<{:U('Visit/lists',array('sort'=>'o','space'=>$_GET['space']))}>"><h5>其他</h5></a></li>
+</ul>
+</div>
+
+<div id="condition">当前筛选条件(点击去除)：
+<present name="condition.id">
+    <a href="__ACTION__/sort/<{$Think.get.sort}>"><{$condition.id}><{$condition.name}></a>
+</present>
+    <a href="/Visit/index/space/<{$Think.get.space}>"><{$condition.sort}></a>
+    <a href="/Visit/index">全部</a>
+</div>
+
+<div class="article list">
+<h2><{$title}></h2>
+<ul>
+    <volist name="lists" id="vo" empty="$empty">
+        <li>
+            <span class="browse_times">浏览次数：<{$vo.browse_times}></span>
+            <span class="num"><{$i + $_GET['p']*25 - 25}>#</span>
+            <a href="<{:U('Visit/details',array('t'=>$sort,'id'=>$vo['id']))}>">
+            <{$vo.name}> — <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+            <present name="vo.type">  &nbsp;—&nbsp; <{$vo.type|default=""}></present></a>
+        </li>
+    </volist>
+</ul>
+</div>
+
+<div class="page">
+    <div class="result"><{$page}></div>
+</div>

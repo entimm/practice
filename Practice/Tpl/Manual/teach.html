@@ -1,0 +1,29 @@
+<layout name="layout" />
+<div id="article_info">
+    <table>
+        <caption><h2>班主任工作周记</h2></caption>
+        <tr>
+            <th>浏览次数</th>
+            <th>完成时间</th>
+            <th>修改时间</th>
+            <th>修改</th>
+        </tr>
+        <tr>
+            <td><{$teach.browse_times}></td>
+            <td><{$teach.add_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+            <td><{$teach.mod_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+            <td><button class="btn btn-primary" onclick="location='<{:U('Manual/teachMod',array('id'=>$_GET['id']))}>'">
+                修改</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="content">
+    <{$teach.cont|htmlspecialchars_decode}>
+</div>
+
+<script src="/UEditor/ueditor.parse.min.js"></script>
+<script>setTimeout(function(){uParse('div',{
+    'highlightJsUrl':'/UEditor/third-party/SyntaxHighlighter/shCore.js',
+    'highlightCssUrl':'/UEditor/third-party/SyntaxHighlighter/shCoreDefault.css'})},300)
+</script>

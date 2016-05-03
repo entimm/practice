@@ -1,0 +1,53 @@
+<layout name="layout" />
+<div id="article_info">
+    <table>
+        <caption><h2>听课和评课记录</h2></caption>
+        <tr>
+            <th>浏览次数</th>
+            <th>完成时间</th>
+            <th>修改时间</th>
+            <th>修改</th>
+        </tr>
+        <tr>
+            <td><{$record.browse_times}></td>
+            <td><{$record.add_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+            <td><{$record.mod_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+            <td><button class="btn btn-primary" onclick="location='<{:U('Manual/recordMod',array('id'=>$_GET['id']))}>'">
+                修改</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<h2>基本信息：</h2>
+<div class="content" style="padding:2px 34px;">
+    <table class="infotable">
+        <tr>
+            <th>班级</th>
+            <th>授课教师</th>
+            <th>授课时间</th>
+            <th>课程名称</th>
+            <th>课题</th>
+        </tr>
+        <tr>
+            <td><{$record.class}></td>
+            <td><{$record.teacher}></td>
+            <td><{$record.time}></td>
+            <td><{$record.course}></td>
+            <td><{$record.title}></td>
+        </tr>
+    </table>
+</div>
+<h2>教学过程：</h2>
+<div class="content">
+    <{$record.cont|htmlspecialchars_decode}>
+</div>
+<h2>评述：</h2>
+<div class="content">
+    <{$record.comment|htmlspecialchars_decode}>
+</div>
+
+<script src="/UEditor/ueditor.parse.min.js"></script>
+<script>setTimeout(function(){uParse('div',{
+    'highlightJsUrl':'/UEditor/third-party/SyntaxHighlighter/shCore.js',
+    'highlightCssUrl':'/UEditor/third-party/SyntaxHighlighter/shCoreDefault.css'})},300)
+</script>

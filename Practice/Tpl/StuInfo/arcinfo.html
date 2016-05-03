@@ -1,0 +1,67 @@
+<layout name="layout" />
+<a href="<{:U('StuInfo/index')}>" style="float:right;background-color: #0F03FC;color: white; padding:5px;">
+学生基本信息</a>
+<table class="bordered">
+    <caption>
+        <h2>学生文章数量信息</h2>
+    </caption>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>听评课记录</th>
+            <th>教学实习教案</th>
+            <th>班主任工作周记</th>
+            <th>教学工作实习周记</th>
+            <th>岗前培训</th>
+            <th>其他</th>
+            <th>总</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="arcinfo" id="vo">
+            <tr>
+                <td><{$i}></td>
+                <td>
+                    <{$vo.id}>
+                </td>
+                <td>
+                    <a href="<{:U('Visit/index',array('space'=>$vo['id']))}>">
+                        <{$vo.name}>
+                    </a>
+                </td>
+                <td>
+                    <{$vo.vrn}>
+                </td>
+                <td>
+                    <{$vo.tpn}>
+                </td>
+                <td>
+                    <{$vo.twn}>
+                </td>
+                <td>
+                    <{$vo.wwn}>
+                </td>
+                <td>
+                    <{$vo.tn}>
+                </td>
+                <td>
+                    <{$vo.on}>
+                </td>
+                <td>
+                    <{$vo.total}>
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>
+<br />
+<h3>听评课记录：<{$total['vr']}>篇</h3>
+<h3>教学实习教案：<{$total['tp']}>篇</h3>
+<h3>班主任工作周记：<{$total['tw']}>篇</h3>
+<h3>教学工作实习周记：<{$total['ww']}>篇</h3>
+<h3>岗前培训：<{$total['t']}>篇</h3>
+<h3>其他：<{$total['o']}>篇</h3>
+
+<h3>总数：<{$total['total']}>篇</h3>

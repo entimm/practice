@@ -1,0 +1,31 @@
+<layout name="layout" />
+
+<div class="container">
+    <form method="post" action="<{:U('Manual/recordAdd')}>">
+        <h3>听课和评课记录</h3>
+        <input type="text" placeholder="听评课班级" name="class" required />
+        <input type="text" placeholder="授课教师" name="teacher" />
+        <input type="datetime" placeholder="授课时间" name="time" id="datepicker" contenteditable="false" required />
+        <input type="text" placeholder="课程名称" name="course" class="span3" required />
+        <input type="text" placeholder="课题" name="title" required /><br />
+        教学过程
+        <script type="text/plain" name="cont" id="content" style="height:500px"></script>
+        评述
+        <script type="text/plain" name="comment" id="comment" style="height:500px"></script>
+        <input type="submit" value="提交" class="btn offset1 btn btn-success">
+    </form>
+</div>
+
+<load href="__JQUERYUI__/ui/jquery.ui.core.js" />
+<load href="__JQUERYUI__/ui/jquery.ui.datepicker.js" />
+<script type="text/javascript">
+    $("#datepicker").datepicker();
+    $('#datepicker').datepicker('option', {
+        dateFormat: 'yy年mm月dd日',
+        beforeShow: function(picker) {
+           $(picker).css('z-index', 9999);
+        }
+    });
+    UE.getEditor('content');
+    UE.getEditor('comment');
+</script>

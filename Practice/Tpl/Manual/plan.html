@@ -1,0 +1,34 @@
+<layout name="layout" />
+<div id="article_info">
+    <table>
+        <caption><h2>教学实习教案</h2></caption>
+        <tr>
+            <th>浏览次数</th>
+            <th>完成时间</th>
+            <th>修改时间</th>
+            <th>修改</th>
+        </tr>
+        <tr>
+            <td><{$plan.browse_times}></td>
+            <td><{$plan.add_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+            <td><{$plan.mod_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+            <td><button class="btn btn-primary" onclick="location='<{:U('Manual/planMod',array('id'=>$_GET['id']))}>'">
+                修改</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<h2>教学实习教案正文</h2>
+<div class="content">
+    <{$plan.cont|htmlspecialchars_decode}>
+</div>
+<h2>实习生教学反思</h2>
+<div class="content">
+	<{$plan.rethink|htmlspecialchars_decode}>
+</div>
+
+<script src="/UEditor/ueditor.parse.min.js"></script>
+<script>setTimeout(function(){uParse('div',{
+    'highlightJsUrl':'/UEditor/third-party/SyntaxHighlighter/shCore.js',
+    'highlightCssUrl':'/UEditor/third-party/SyntaxHighlighter/shCoreDefault.css'})},300)
+</script>

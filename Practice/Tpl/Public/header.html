@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>海师信息学院实习系统</title>
+	<meta name="keywords" content="海南师范大学 实习管理系统">
+	<link rel="shortcut icon" href="__IMAGES__/favicon.ico" />
+	<load href="__JQUERYUI__/themes/base/jquery.ui.all.css" />
+	<load href="__ORBIT__/orbit-1.2.3.css" />
+	<load href="__CSS__/style.css"/>
+
+	<!--[if IE]>
+	     <style type="text/css">
+	         .timer {
+	             display: none!important;
+	         }
+	         div.caption {
+	             background: transparent;
+	             filter: progid: DXImageTransform.Microsoft.gradient(startColorstr = #99000000,endColorstr= #99000000);zoom: 1; }
+	         .answer {
+				border:1px solid #AEAEAE;
+				border-top: 0 none;
+	         }
+	    </style>
+	<![endif]-->
+
+	<load href="__JQUERYUI__/jquery-1.9.1.js" />
+	<load href="__JS__/jquery.cookie.js" />
+
+    <load href="__EDITOR__/ueditor.config.js" />
+    <load href="__EDITOR__/ueditor.all.min.js" />
+</head>
+<body>
+	<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<a href="/"><img src="__IMAGES__/logo.png" /></a>
+		</div>
+		<present name="Think.session.userinfo">
+		<div id="mainnav" style="clear:none;">
+		<ul>
+			<li><a href="/">首页</a></li>
+			<if condition="$Think.session.userinfo.level eq student">
+			<li><a href="<{:U('Manual/index')}>">实习手册</a></li>
+			<li><a href="<{:U('Visit/index')}>">访问同学</a></li>
+			<li><a href="<{:U('Answer/index')}>">在线咨询</a></li>
+			<li><a href="<{:U('Apply/index')}>">实习报名</a></li>
+			<li><a href="<{:U('StuInfo/index')}>">统计</a></li>
+			<elseif condition="$Think.session.userinfo.level eq teacher" />
+            <li><a href="<{:U('ManualTeach/index')}>">实习手册</a></li>
+            <li><a href="<{:U('VisitTeach/index')}>">访问老师</a></li>
+            <li><a href="<{:U('Visit/index')}>">实习督察</a></li>
+            <li><a href="<{:U('Search/index')}>">内容搜索</a></li>
+            <li><a href="<{:U('Answer/index')}>">在线解答</a></li>
+            <li><a href="<{:U('StuInfo/index')}>">统计</a></li>
+			</if>
+			<li><a href="<{:U('UserInfo/index')}>">个人信息</a></li>
+			<li><a href="<{:U('Login/logout')}>">退出</a></li>
+		</ul>
+		</div>
+		</present>
+	</div>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <load href="__CSS__/style.css" />
+    <load href="__CSS__/article.css" />
+    <!--[if IE]>
+	     <style type="text/css">
+	         .timer {
+	             display: none!important;
+	         }
+	         div.caption {
+	             background: transparent;
+	             filter: progid: DXImageTransform.Microsoft.gradient(startColorstr = #99000000,endColorstr= #99000000);zoom: 1; }
+	         .answer {
+				border:1px solid #AEAEAE;
+				border-top: 0 none;
+	         }
+	    </style>
+	<![endif]-->
+</head>
+
+<body style="background-image:none;">
+    <div id="wrapper" style="background-color:#fff;">
+        <div id="article_info">
+            <table>
+                <caption>
+                    <h2>
+                        <{$title}>
+                    </h2>
+                </caption>
+                <tr>
+                    <th>作者</th>
+                    <th>浏览次数</th>
+                    <th>完成时间</th>
+                    <th>修改时间</th>
+                </tr>
+                <tr>
+                    <td>
+                        <{$article.name}>
+                    </td>
+                    <td>
+                        <{$article.browse_times}>
+                    </td>
+                    <td>
+                        <{$article.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+                    </td>
+                    <td>
+                        <{$article.mod_time|strtotime|date="Y年m月d日H时i分" ,###}>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <if condition="$sort eq 'vr'">
+            <h2>基本信息：</h2>
+            <div class="content" style="padding:2px 34px;">
+                <table class="infotable">
+                    <tr>
+                        <th>班级</th>
+                        <th>授课教师</th>
+                        <th>授课时间</th>
+                        <th>课程名称</th>
+                        <th>课题</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <{$article.class}>
+                        </td>
+                        <td>
+                            <{$article.teacher}>
+                        </td>
+                        <td>
+                            <{$article.time}>
+                        </td>
+                        <td>
+                            <{$article.course}>
+                        </td>
+                        <td>
+                            <{$article.title}>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h2>教学过程：</h2>
+            <div class="content">
+                <{$article.cont|htmlspecialchars_decode}>
+            </div>
+            <h2>评述：</h2>
+            <div class="content">
+                <{$article.comment|htmlspecialchars_decode}>
+            </div>
+            <elseif condition="$sort eq 'tp'" />
+            <h2>教学实习教案正文</h2>
+            <div class="content">
+                <{$article.cont|htmlspecialchars_decode}>
+            </div>
+            <h2>实习生教学反思</h2>
+            <div class="content">
+                <{$article.rethink|htmlspecialchars_decode}>
+            </div>
+            <else />
+            <div class="content">
+                <{$article.cont|htmlspecialchars_decode}>
+            </div>
+        </if>
+        <div class="clear"></div>
+    </div>
+</body>
+
+</html>

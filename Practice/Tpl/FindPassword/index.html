@@ -1,0 +1,36 @@
+<layout name="layout" />
+<div id="findpwd">
+    <h1>找回密码</h1>
+    <p>
+        <label for="account">请输入你的学号：</label>
+        <input type="text" name="account" id="account" required />
+    </p>
+    <p id="mailinfo">
+
+    </p>
+    <p>
+        <input type="button" id="submit" value="提交">
+    </p>
+</div>
+
+<script>
+$("#submit").click(function() {
+    id = $("#account").val();
+
+    $.ajax({
+        url: '<{:U("FindPassword/findpwd")}>',
+        type: 'post',
+        data: {
+            id: id
+        },
+        beforeSend: function() {
+            $("#mailinfo").html("<span class='warn'>请稍等，正在处理中...</span>").show();
+        },
+    })
+        .done(function(data) {
+            $("#mailinfo").html(data.info);
+        })
+        .fail(function() {})
+        .always(function() {});
+});
+</script>

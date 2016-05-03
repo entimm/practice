@@ -1,0 +1,36 @@
+<layout name="layout" />
+<div id="goback"><input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回上一页"></div>
+
+<div id="article_info">
+<table>
+	<caption><h2><{$arc.type}></h2></caption>
+	<tr>
+		<th>作者</th>
+		<th>浏览次数</th>
+		<th>完成时间</th>
+		<th>修改时间</th>
+	</tr>
+	<tr>
+		<td><{$arc.name}></td>
+		<td><{$arc.browse_times}></td>
+		<td><{$arc.add_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+		<td><{$arc.mod_time|strtotime|date="Y年m月d日H时i分" ,###}></td>
+	</tr>
+</table>
+</div>
+
+<div class="content">
+    <{$arc.cont|htmlspecialchars_decode}>
+</div>
+
+<script>
+	if(document.referrer != null&& document.referrer !=""){
+		$("#goback").show();
+	}
+</script>
+<script src="/UEditor/ueditor.parse.min.js"></script>
+<script>
+setTimeout(function(){uParse('div',{
+    'highlightJsUrl':'/UEditor/third-party/SyntaxHighlighter/shCore.js',
+    'highlightCssUrl':'/UEditor/third-party/SyntaxHighlighter/shCoreDefault.css'})},300)
+</script>

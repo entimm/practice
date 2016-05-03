@@ -1,0 +1,46 @@
+<layout name="layout" />
+<a href="<{:U('StuInfo/arcinfo')}>" style="float:right;background-color: #0F03FC;color: white; padding:5px;">
+学生文章数量信息</a>
+<table class="bordered">
+    <caption>
+        <h2>学生信息</h2>
+    </caption>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>被访问次数</th>
+            <th>登录次数</th>
+            <th>上次登录ip</th>
+            <th>上一次登录时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="stuinfos" id="vo">
+            <tr>
+                <td><{$i}></td>
+                <td>
+                    <{$vo.id}>
+                </td>
+                <td>
+                    <a href="<{:U('Visit/index',array('space'=>$vo['id']))}>">
+                        <{$vo.name}>
+                    </a>
+                </td>
+                <td>
+                    <{$vo.popular}>
+                </td>
+                <td>
+                    <{$vo.logtimes}>
+                </td>
+                <td>
+                    <{$vo.lastip|default="--" }>
+                </td>
+                <td>
+                    <{$vo.lastlg}>
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>

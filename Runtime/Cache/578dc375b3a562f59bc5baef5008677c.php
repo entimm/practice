@@ -1,0 +1,19 @@
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html><html lang="en"><head><meta charset="UTF-8" /><title>海师信息学院实习系统</title><meta name="keywords" content="海南师范大学 实习管理系统"><link rel="shortcut icon" href="__IMAGES__/favicon.ico" /><link rel="stylesheet" type="text/css" href="__JQUERYUI__/themes/base/jquery.ui.all.css" /><link rel="stylesheet" type="text/css" href="__ORBIT__/orbit-1.2.3.css" /><link rel="stylesheet" type="text/css" href="__CSS__/style.css" /><!--[if IE]><style type="text/css">	         .timer {
+	             display: none!important;
+	         }
+	         div.caption {
+	             background: transparent;
+	             filter: progid: DXImageTransform.Microsoft.gradient(startColorstr = #99000000,endColorstr= #99000000);zoom: 1; }
+	         .answer {
+				border:1px solid #AEAEAE;
+				border-top: 0 none;
+	         }
+	    </style><![endif]--><script type="text/javascript" src="__JQUERYUI__/jquery-1.9.1.js"></script><script type="text/javascript" src="__JS__/jquery.cookie.js"></script><script type="text/javascript" src="__EDITOR__/ueditor.config.js"></script><script type="text/javascript" src="__EDITOR__/ueditor.all.min.js"></script></head><body><div id="wrapper"><div id="header"><div id="logo"><a href="/"><img src="__IMAGES__/logo.png" /></a></div><?php if(isset($_SESSION['userinfo'])): ?><div id="mainnav" style="clear:none;"><ul><li><a href="/">首页</a></li><?php if($_SESSION['userinfo']['level']== student): ?><li><a href="<?php echo U('Manual/index');?>">实习手册</a></li><li><a href="<?php echo U('Visit/index');?>">访问同学</a></li><li><a href="<?php echo U('Answer/index');?>">在线咨询</a></li><li><a href="<?php echo U('Apply/index');?>">实习报名</a></li><li><a href="<?php echo U('StuInfo/index');?>">统计</a></li><?php elseif($_SESSION['userinfo']['level']== teacher): ?><li><a href="<?php echo U('ManualTeach/index');?>">实习手册</a></li><li><a href="<?php echo U('VisitTeach/index');?>">访问老师</a></li><li><a href="<?php echo U('Visit/index');?>">实习督察</a></li><li><a href="<?php echo U('Search/index');?>">内容搜索</a></li><li><a href="<?php echo U('Answer/index');?>">在线解答</a></li><li><a href="<?php echo U('StuInfo/index');?>">统计</a></li><?php endif; ?><li><a href="<?php echo U('UserInfo/index');?>">个人信息</a></li><li><a href="<?php echo U('Login/logout');?>">退出</a></li></ul></div><?php endif; ?></div><div id="slide"><div class="content" style=""><h2>实习风采</h2><h4>海南师范大学信息科学技术学院</h4></div><img src="__IMAGES__/Orbit/1.jpg" /><img src="__IMAGES__/Orbit/2.jpg" /><img src="__IMAGES__/Orbit/3.jpg" /></div><form id="loginform" method="post" action="<?php echo U('Login/index');?>"><ul><li><h1>用户登录</h1></li><li><label for="account">账号：</label><input type="text" name="account" id="account" required /></li><li><label for="user_password">密码：</label><input type="password" name="user_password" id="user_password" required /></li><li>            职位：
+            <ul><li><input type="radio" checked="checked" id="student" value="student" name="level" /><label for="student">学生</label></li><li><input type="radio" id="teacher" value="teacher" name="level" /><label for="teacher">老师</label></li><li><input type="radio" id="department" value="department" name="level" /><label for="department">管理员</label></li></ul></li><li><input type="submit" value="登录"><input type="reset" value="重置"></li><li><a href="<?php echo U('FindPassword/index');?>"><span class="forgot">忘记密码？</span></a></li></ul></form><script type="text/javascript" src="__ORBIT__/jquery.orbit-1.2.3.min.js"></script><script type="text/javascript">$(window).load(function() {
+    $('#slide').orbit({
+        'bullets': true,
+        'bulletThumbs': true,
+        'bulletThumbLocation': 'orbit/'
+    });
+});
+</script><div class="clear"></div></div><div id="footer">&copy;2013海南师范大学信息科学技术学院</div></body></html>

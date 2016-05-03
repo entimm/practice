@@ -1,0 +1,31 @@
+<layout name="layout" />
+
+<volist name="arcs" id="vo">
+<a href="<{:U('ManualTeach/arcadd',array('typeid'=>$vo['tpid']))}>">
+    <h2><{$vo.type}></h2>
+</a>
+<ul class="list">
+	<volist name="vo.arcs" id="v">
+        <li>
+        	<span class="mod"><a href="<{:U('ManualTeach/arcmod',array('arcid'=>$v['id']))}>">改</a></span>
+            <span class="del"><a href="javascript:;" onclick="delarticle(<{$v['id']}>)">删</a></span>
+            <a href="<{:U('ManualTeach/detail',array('arcid'=>$v['id']))}>">
+                <span class="num"><{$i}>#</span>
+                <{$v.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+            </a>
+        </li>
+	</volist>
+    <eq name="vo.arcs|count" value="0">
+        <li><a href="<{:U('ManualTeach/arcadd',array('typeid'=>$vo['tpid']))}>"><span class="warn">还没写一篇哦，赶紧写一篇吧!</span></a></li>
+    </eq>
+</ul>
+</volist>
+
+<script>
+    function delarticle(id) {
+        var bool = confirm("你确定要删除这篇文章吗？");
+        if(bool){
+            location="/ManualTeach/arcdel?arcid="+id;
+        }
+    }
+</script>

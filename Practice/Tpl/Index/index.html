@@ -1,0 +1,76 @@
+<layout name="layout" />
+<div id="info" style="width:435">
+        <div style="font-size: 25px">
+            <em>你好</em>，<b><{$Think.session.userinfo.name}></b>
+            <em><if condition="$Think.session.userinfo.level eq student">
+            同学<else />老师</if></em>
+        </div>
+        <div style="font-size: 15px">
+            <p>上一次登录时间：<{$Think.session.userinfo.lastlg|strtotime|date="Y年m月d日H时i分" ,###}></p>
+            <p>累计登录次数：<{$Think.session.userinfo.logtimes}></p>
+            <p>上次登录ip：<{$Think.session.userinfo.lastip|default="--"}></p>
+            <p>本次登录ip：<eq name="Think.session.userinfo.nowip" value="$Think.session.userinfo.lastip">
+                            和上次一样哦<else /><{$Think.session.userinfo.nowip}></eq>
+            </p>
+        </div>
+</div>
+<a href="<{:U('Notice/addNotice')}>"><h2>实习公告</h2></a>
+<ul class="list">
+    <volist name="notices" id="vo">
+    <li>
+        <eq name="Think.session.userinfo.level" value="teacher">
+            <span class="mod"><a href="<{:U('Notice/modNotice',array('id'=>$vo['id']))}>">改</a></span>
+            <span class="del"><a href="javascript:;" data-id="<{$vo['id']}>">删</a></span>
+        </eq>
+        <span class="time"><{$vo.time|strtotime|date="Y/m/d" ,###}></span>
+        <span class="num"><{$i}>#</span>
+        <a href="<{:U('Index/notice',array('id'=>$vo['id']))}>"><{$vo.title}></a>
+
+    </li>
+    </volist>
+</ul>
+<h2>下载</h2>
+<ul class="list">
+    <li>
+        <img src="__EDITOR__/dialogs/attachment/fileTypeImages/icon_xls.gif" />
+        <a href="__EDITOR__/php/upload/20130912/2013年顶岗实习班级管理岗前强化培训安排一览表.xls">2013年顶岗实习班级管理岗前强化培训安排一览表</a>
+    </li>
+    <li>
+        <img src="__EDITOR__/dialogs/attachment/fileTypeImages/icon_doc.gif" />
+        <a href="__EDITOR__/php/upload/20130912/实习管理系统用户指南.doc">实习管理系统用户指南</a>
+    </li>
+    <li>
+        <img src="__EDITOR__/dialogs/attachment/fileTypeImages/icon_doc.gif" />
+        <a href="__EDITOR__/php/upload/20130912/海南师范大学信息科学技术学院实习方案(2010级）.doc">海南师范大学信息科学技术学院实习方案(2010级）</a>
+    </li>
+    <li>
+        <img src="__EDITOR__/dialogs/attachment/fileTypeImages/icon_rar.gif" />
+        <a href="__EDITOR__/php/upload/20130912/实习工作相关表格.rar">实习工作相关表格.rar</a>
+    </li>
+</ul>
+
+<eq name="Think.session.userinfo.level" value="teacher">
+<script>
+    $(".del a").click(function(){
+        if(confirm("真的要删除这篇公告吗？")){
+            id=$(this).attr("data-id");
+            pnt=$(this).parent().parent();
+            $.ajax({
+                url: '<{:U("Notice/delNotice")}>',
+                type: 'POST',
+                data: {id: id},
+            })
+            .done(function() {
+                pnt.remove();
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
+        }
+    });
+</script>
+</eq>

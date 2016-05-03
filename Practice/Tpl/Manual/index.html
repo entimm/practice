@@ -1,0 +1,113 @@
+<layout name="layout" />
+<a href="<{:U('Manual/trainAdd')}>">
+    <h2>岗前培训</h2>
+</a>
+<ul class="list">
+    <volist name="train" id="vo">
+        <li>
+        <span class="mod"><a href="<{:U('Manual/trainMod',array('id'=>$vo['id']))}>">改</a></span>
+            <span class="del"><a href="javascript:;" onclick="delarticle('Train',<{$vo['id']}>)">删</a></span>
+            <a href="<{:U('Manual/train',array('id'=>$vo['id']))}>">
+                <span class="num"><{$i}>#</span>
+                <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+            </a>
+        </li>
+    </volist>
+    <eq name="train|count" value="0">
+        <li><a href="<{:U('Manual/trainAdd')}>"><span class="warn">还没写一篇哦，赶紧写一篇吧!</span></a></li>
+    </eq>
+</ul>
+
+<a href="<{:U('Manual/recordAdd')}>">
+    <h2>听课和评课记录</h2>
+</a>
+<ul class="list">
+    <volist name="visitrecord" id="vo">
+        <li>
+        <span class="mod"><a href="<{:U('Manual/recordMod',array('id'=>$vo['id']))}>">改</a></span>
+            <span class="del"><a href="javascript:;" onclick="delarticle('VisitRecord',<{$vo['id']}>)">删</a></span>
+            <a href="<{:U('Manual/record',array('id'=>$vo['id']))}>">
+                <span class="num"><{$i}>#</span>
+                <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+            </a>
+        </li>
+    </volist>
+    <eq name="visitrecord|count" value="0">
+        <li><a href="<{:U('Manual/recordAdd')}>"><span class="warn">还没写一篇哦，赶紧写一篇吧!</span></a></li>
+    </eq>
+</ul>
+
+<a href="<{:U('Manual/planAdd')}>">
+    <h2>教学实习教案</h2>
+</a>
+<ul class="list">
+    <volist name="teachplan" id="vo">
+        <li>
+        <span class="mod"><a href="<{:U('Manual/planMod',array('id'=>$vo['id']))}>">改</a></span>
+            <span class="del"><a href="javascript:;" onclick="delarticle('TeachPlan',<{$vo['id']}>)">删</a></span>
+            <a href="<{:U('Manual/plan',array('id'=>$vo['id']))}>">
+                <span class="num"><{$i}>#</span>
+                <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+            </a>
+        </li>
+    </volist>
+    <eq name="teachplan|count" value="0">
+        <li><a href="<{:U('Manual/planAdd')}>"><span class="warn">还没写一篇哦，赶紧写一篇吧!</span></a></li>
+    </eq>
+</ul>
+
+<a href="<{:U('Manual/teachAdd')}>">
+    <h2>班主任工作周记</h2>
+</a>
+<ul class="list">
+    <volist name="teachweek" id="vo">
+        <li>
+        <span class="mod"><a href="<{:U('Manual/teachMod',array('id'=>$vo['id']))}>">改</a></span>
+            <span class="del"><a href="javascript:;" onclick="delarticle('TeachWeek',<{$vo['id']}>)">删</a></span>
+            <a href="<{:U('Manual/teach',array('id'=>$vo['id']))}>">
+                <span class="num"><{$i}>#</span>
+                <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+            </a>
+        </li>
+    </volist>
+    <eq name="teachweek|count" value="0">
+        <li><a href="<{:U('Manual/teachAdd')}>"><span class="warn">还没写一篇哦，赶紧写一篇吧!</span></a></li>
+    </eq>
+</ul>
+
+<a href="<{:U('Manual/workAdd')}>">
+    <h2>教学工作实习周记</h2>
+</a>
+<ul class="list">
+    <volist name="workweek" id="vo">
+        <li>
+        <span class="mod"><a href="<{:U('Manual/workMod',array('id'=>$vo['id']))}>">改</a></span>
+            <span class="del"><a href="javascript:;" onclick="delarticle('WorkWeek',<{$vo['id']}>)">删</a></span>
+            <a href="<{:U('Manual/work',array('id'=>$vo['id']))}>">
+                <span class="num"><{$i}>#</span>
+                <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+            </a>
+        </li>
+    </volist>
+    <eq name="workweek|count" value="0">
+        <li><a href="<{:U('Manual/workAdd')}>"><span class="warn">还没写一篇哦，赶紧写一篇吧!</span></a></li>
+    </eq>
+</ul>
+
+<volist name="type" id="vo">
+    <a href="<{:U('Manual/other',array('typeid'=>$vo['id']))}>">
+        <eq name="vo.isok" value="1"><span class="ok">完成</span>
+        <else /><span class="none">未写</span>
+        </eq>
+        <h2><{$vo.type}></h2>
+    </a>
+</volist>
+
+<script>
+    function delarticle(sort,id) {
+        var bool = confirm("你确定要删除这篇文章吗？");
+        if(bool){
+            location="/Manual/delarticle?sort="+sort+"&id="+id;
+        }
+    }
+</script>

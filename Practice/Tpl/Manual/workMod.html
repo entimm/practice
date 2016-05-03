@@ -1,0 +1,16 @@
+<layout name="layout" />
+
+<div class="container">
+    <form method="post" action="<{:U('Manual/workMod',array('id'=>$_GET['id']))}>">
+        <h3>教学工作实习周记</h3>
+        <script type="text/plain" name="content" id="content" style="height:500px">
+            <{$work.cont|htmlspecialchars_decode}>
+        </script>
+        <input type="submit" value="提交" class="btn offset1 btn btn-success">
+    </form>
+
+</div>
+
+<script type="text/javascript">
+UE.getEditor('content');
+</script>

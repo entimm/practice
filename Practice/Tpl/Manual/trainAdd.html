@@ -1,0 +1,27 @@
+<layout name="layout" />
+
+<div class="container">
+	<form method="post" action="<{:U('Manual/trainAdd',array('typeid'=>$_GET['typeid']))}>">
+		<h3>岗前培训心得</h3>
+	<!-- <fieldset>
+			<legend>培训课题</legend>
+			<div style="margin-left:50px">
+				<volist name="title" id="vo">
+					<label class="radio">
+						<input type="radio" name="title" id="" value="option1" checked><{$vo.title}>
+					</label>
+				</volist>
+			</div>
+		</fieldset> -->
+		<script type="text/plain" name="content" id="content" style="height:500px"></script>
+		<div style="margin:10px auto" class="text-center">
+		<input type="submit" value="提   交" class="btn btn-primary btn-large span2 bigfont" />
+		</div>
+
+	</form>
+
+</div>
+
+<script type="text/javascript">
+UE.getEditor('content');
+</script>

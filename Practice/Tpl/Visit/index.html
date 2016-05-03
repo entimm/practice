@@ -1,0 +1,184 @@
+<layout name="layout" />
+<ul id="userlist">
+    <volist name="stus" id="vo">
+        <li>
+            <a href="<{:U('Visit/index',array('space'=>$vo['id']))}>">
+                <{$vo.id}> - <{$vo.name}>
+            </a>
+        </li>
+    </volist>
+</ul>
+
+<div class="sortlist">
+    <ul>
+        <li style="margin-left:0">
+            <a href="<{:U('Visit/lists',array('sort'=>'vr','space'=>$_GET['space']))}>">
+                <h5>听评课记录</h5>
+            </a>
+        </li>
+        <li>
+            <a href="<{:U('Visit/lists',array('sort'=>'tp','space'=>$_GET['space']))}>">
+                <h5>教学实习教案</h5>
+            </a>
+        </li>
+        <li>
+            <a href="<{:U('Visit/lists',array('sort'=>'ww','space'=>$_GET['space']))}>">
+                <h5>教学工作周记</h5>
+            </a>
+        </li>
+        <li>
+            <a href="<{:U('Visit/lists',array('sort'=>'tw','space'=>$_GET['space']))}>">
+                <h5>班主任工作周记</h5>
+            </a>
+        </li>
+        <li>
+            <a href="<{:U('Visit/lists',array('sort'=>'t','space'=>$_GET['space']))}>">
+                <h5>岗前培训</h5>
+            </a>
+        </li>
+        <li>
+            <a href="<{:U('Visit/lists',array('sort'=>'o','space'=>$_GET['space']))}>">
+                <h5>其他</h5>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<present name="condition">
+    <div id="condition">
+        当前筛选条件(点击去除)：
+        <a href="__ACTION__">
+            <{$condition.id}>
+                <{$condition.name}>
+        </a>
+        <a href="/Visit/index">全部</a>
+    </div>
+</present>
+
+<div class="article list">
+    <a href="<{:U('Visit/lists',array('sort'=>'vr','space'=>$_GET['space']))}>">
+        <h2>听评课记录</h2>
+    </a>
+    <ul>
+        <volist name="visitrecords" id="vo">
+            <li>
+                <span class="browse_times">浏览次数：
+                    <{$vo.browse_times}>
+                </span>
+                <span class="num"><{$i}>#</span>
+                <a href="<{:U('Visit/details',array('t'=>'vr','id'=>$vo['id']))}>">
+                    <{$vo.name}> — <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+                </a>
+            </li>
+        </volist>
+        <li><a href="<{:U('Visit/lists',array('sort'=>'vr','space'=>$_GET['space']))}>">更多...</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="article list">
+    <a href="<{:U('Visit/lists',array('sort'=>'tp','space'=>$_GET['space']))}>">
+        <h2>教学实习教案</h2>
+    </a>
+    <ul>
+        <volist name="teachplans" id="vo">
+            <li>
+                <span class="browse_times">浏览次数：
+                    <{$vo.browse_times}>
+                </span>
+                <span class="num"><{$i}>#</span>
+                <a href="<{:U('Visit/details',array('t'=>'tp','id'=>$vo['id']))}>">
+                    <{$vo.name}> — <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+                </a>
+            </li>
+        </volist>
+        <li><a href="<{:U('Visit/lists',array('sort'=>'tp','space'=>$_GET['space']))}>">更多...</a>
+        </li>
+    </ul>
+</div>
+
+<div class="article list">
+    <a href="<{:U('Visit/lists',array('sort'=>'ww','space'=>$_GET['space']))}>">
+        <h2>教学工作周记</h2>
+    </a>
+    <ul>
+        <volist name="workweeks" id="vo">
+            <li>
+                <span class="browse_times">浏览次数：
+                    <{$vo.browse_times}>
+                </span>
+                <span class="num"><{$i}>#</span>
+                <a href="<{:U('Visit/details',array('t'=>'ww','id'=>$vo['id']))}>">
+                    <{$vo.name}> — <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+                </a>
+            </li>
+        </volist>
+        <li><a href="<{:U('Visit/lists',array('sort'=>'ww','space'=>$_GET['space']))}>">更多...</a>
+        </li>
+    </ul>
+</div>
+
+<div class="article list">
+    <a href="<{:U('Visit/lists',array('sort'=>'tw','space'=>$_GET['space']))}>">
+        <h2>班主任工作周记</h2>
+    </a>
+    <ul>
+        <volist name="teachweeks" id="vo">
+            <li>
+                <span class="browse_times">浏览次数：
+                    <{$vo.browse_times}>
+                </span>
+                <span class="num"><{$i}>#</span>
+                <a href="<{:U('Visit/details',array('t'=>'tw','id'=>$vo['id']))}>">
+                    <{$vo.name}> — <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+                </a>
+            </li>
+        </volist>
+        <li><a href="<{:U('Visit/lists',array('sort'=>'tw','space'=>$_GET['space']))}>">更多...</a>
+        </li>
+    </ul>
+</div>
+
+<div class="article list">
+    <a href="<{:U('Visit/lists',array('sort'=>'t','space'=>$_GET['space']))}>">
+        <h2>岗前培训</h2>
+    </a>
+    <ul>
+        <volist name="trains" id="vo">
+            <li>
+                <span class="browse_times">浏览次数：
+                    <{$vo.browse_times}>
+                </span>
+                <span class="num"><{$i}>#</span>
+                <a href="<{:U('Visit/details',array('t'=>'t','id'=>$vo['id']))}>">
+                    <{$vo.name}> — <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+                </a>
+            </li>
+        </volist>
+        <li><a href="<{:U('Visit/lists',array('sort'=>'t','space'=>$_GET['space']))}>">更多...</a>
+        </li>
+    </ul>
+</div>
+
+<div class="article list">
+    <a href="<{:U('Visit/lists',array('sort'=>'o','space'=>$_GET['space']))}>">
+        <h2>其他</h2>
+    </a>
+    <ul>
+        <volist name="others" id="vo">
+            <li>
+                <span class="browse_times">浏览次数：
+                    <{$vo.browse_times}>
+                </span>
+                <span class="num"><{$i}>#</span>
+                <a href="<{:U('Visit/details',array('t'=>'o','id'=>$vo['id']))}>">
+                    <{$vo.name}> — <{$vo.add_time|strtotime|date="Y年m月d日H时i分" ,###}>
+                            <{$vo.type}>
+                </a>
+            </li>
+        </volist>
+        <li><a href="<{:U('Visit/lists',array('sort'=>'o','space'=>$_GET['space']))}>">更多...</a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,117 @@
+<layout name="layout" />
+<eq name="Think.session.userinfo.level" value="student">
+	<h3>我要提问：</h3>
+	<script type="text/plain" name="question" id="question" style="height:100px" required>
+	</script>
+	<input type="submit" id="submit" value="提交" />
+	<span id="tips"></span>
+<else />
+	<h3>在线解答(请点击回复)：</h3>
+</eq>
+
+<volist name="ques" id="vo" key="k">
+<div class="question_set">
+	<div class="question">
+		<span class="time"><{$vo.time|strtotime|date="Y年m月d日H时i分" ,###}></span>
+		<div class="authinfo"><span class="num"><{$k}>#</span><{$vo.name}></div>
+		<a href="javascript:;" data-id="<{$vo.id}>">回复</a>
+		<{$vo.question|htmlspecialchars_decode}>
+	</div>
+    <eq name="vo.isans" value="1">
+    <volist name="vo['ans']" id="v" key="kk">
+    <div class="answer">
+		<span class="time"><{$v.time|strtotime|date="Y年m月d日H时i分" ,###}></span>
+		<div class="authinfo"><span class="nnum"><{$kk}>##</span><{$v.author}></div>
+	    <{$v.answer|htmlspecialchars_decode}>
+    </div>
+    </volist>
+    </eq>
+</div>
+</volist>
+
+<script type="text/javascript">
+<eq name="Think.session.userinfo.level" value="student">
+	UE.getEditor('question',
+	    {
+	        toolbars:[
+	        ['emotion','insertimage','|', 'undo', 'redo']
+	        ]
+	    });
+</eq>
+
+	$("#submit").click(function() {
+		var questext = UE.getEditor('question').getContent();
+		if( questext == ''){
+			$('#tips').html('请输入内容').show().fadeOut(3000);
+			return;
+		}
+		$.ajax({
+			url: '<{:U("Answer/ajax")}>',
+			type: 'POST',
+			data: {question: questext},
+			beforeSend:function(){$("#tips").html("loading...").show();},
+			success:function(){$("#tips").html("").hide();}
+		})
+		.done(function(data) {
+            var str = '<div class="question_set"><div class="question"><div class="authinfo">我<span class="time">刚刚</span></div>'
+            		+ questext + '</div></div>';
+            $("#tips").after(str);
+            $("#tips").html(data.info).show().fadeOut(3000);
+            UE.getEditor('question').setContent("");
+		})
+		.fail(function() {
+			$('#tips').html("请求失败");
+		})
+		.always(function(data) {
+			$('#tips').html(data.info).show().fadeOut(3000);
+		});
+
+	});
+
+	$(".question > a").click(function() {
+		id = $(this).attr('data-id');
+		var text = '<div class="answer_box"><div id="toans"><textarea name="answer" style="padding:5px;" class="warn">在这里写下你的回复吧！</textarea><button type="button" data-id="'+id+'" class="ansbt">提交</button></div></div>';
+		$('#toans').parent().remove();
+		$(this).parent().after(text);
+
+		$("#toans textarea").on('focus',function(){
+			if($(this).val() == "在这里写下你的回复吧！"){
+				$(this).val("");
+				$(this).removeClass('warn');
+			}
+		});
+		$("#toans textarea").on('blur',function(){
+			if($(this).val() == ""){
+				$(this).val("在这里写下你的回复吧！");
+				$(this).addClass('warn');
+			}
+		});
+
+		$("#toans button").on('click', function () {
+			var answer = $('textarea').val();
+			if( answer == ''|| answer == '在这里写下你的回复吧！'){
+				$('#toans').append('<p class="warn">请输入内容...</p>');
+				return;
+			}
+			var id = $(this).attr('data-id');
+			$.ajax({
+				url: '<{:U("Answer/anwer")}>',
+				type: 'POST',
+				data: {answer: answer,to:id}
+			})
+			.done(function(data) {
+				$('#toans').append(data.info);
+				$('#toans').parent().parent().append('<div class="answer"><div class="authinfo">我<span class="time">刚刚</span></div>'
+            		+ answer + '</div>');
+				$('#toans').parent().remove();
+			})
+			.fail(function(data) {
+				$('#toans').append('请求失败');
+			})
+			.always(function(data) {
+				$('#toans').append(data.info);
+			});
+		});
+	});
+
+</script>

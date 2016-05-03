@@ -1,0 +1,12 @@
+<layout name="layout" />
+
+<div class="content">
+    <{$notice.content|htmlspecialchars_decode}>
+</div>
+
+<script src="/UEditor/ueditor.parse.min.js"></script>
+<script>setTimeout(function(){uParse('div',{
+    'highlightJsUrl':'/UEditor/third-party/SyntaxHighlighter/shCore.js',
+    'highlightCssUrl':'/UEditor/third-party/SyntaxHighlighter/shCoreDefault.css'})},300)
+</script>
+

@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'title', 2 => 'start', 3 => 'limit', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'tinyint(4)', 'title' => 'varchar(32)', 'start' => 'date', 'limit' => 'tinyint(4)', ), );?>

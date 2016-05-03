@@ -1,0 +1,29 @@
+<layout name="layout" />
+
+<div class="container">
+    <form method="post" action="<{:U('Notice/addNotice')}>">
+    <h3>发布公告</h3>
+        <ul style="margin-top:0;">
+            <li>
+                <input type="text" style="width:700px;" placeholder="公告标题" name="title" size="40" required />
+                <input type="text" style="width:300px;" placeholder="发布人或者部门" name="author" />
+                <input type="hidden" name="id" />
+            </li>
+            <li>
+                <span><b>接收群体：</b></span>
+                <volist name="pratype" id="vo">
+                    <input type="checkbox" name="receive[]" value="<{$vo.id}>" checked />
+                    <{$vo.pra_type}>
+                </volist>
+            </li>
+        </ul>
+        <script type="text/plain" name="content" id="content" style="height:500px">
+        </script>
+        <input type="submit" value="提交">
+    </form>
+
+</div>
+
+<script type="text/javascript">
+UE.getEditor('content');
+</script>

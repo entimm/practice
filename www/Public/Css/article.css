@@ -1,0 +1,47 @@
+div td, div th {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    padding: 5px 10px;
+}
+div tr.ue-table-interlace-color-single td {
+    background: none repeat scroll 0 0 #FCFCFC;
+}
+div table.sortEnabled tr.firstRow th:hover, div table.sortEnabled tr.firstRow td:hover {
+    background-color: #EEEEEE;
+}
+div td p {
+    margin: 0;
+    padding: 0;
+}
+div table.noBorderTable td, div table.noBorderTable th, div table.noBorderTable caption {
+    border: 1px dashed #DDDDDD !important;
+}
+div table.sortEnabled tr.firstRow th, div table.sortEnabled tr.firstRow td {
+    background-image: url("undefinedthemes/default/images/sortable.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+}
+div th {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border-top: 1px solid #BBBBBB;
+}
+div tr.ue-table-interlace-color-double td {
+    background: none repeat scroll 0 0 #F7FAFF;
+}
+div table {
+    border-collapse: collapse;
+    display: table;
+    margin-bottom: 10px;
+}
+div table tr.firstRow th {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border-top: 2px solid #BBBBBB;
+}
+#wrapper {
+    padding-top:10px;
+    padding-bottom: 20px;
+}
+#article_info caption {
+    padding:10px;
+}
